@@ -1,0 +1,94 @@
+POST http://127.0.0.1:8888 HTTP/1.1
+content-type: application/json
+
+{
+  "jsonpayload":{
+    "uid": "ab789c",
+    "trips": [
+      {
+        "tid": 123, 
+        "name": "Trip to Paris",
+        "expenses": [
+          {
+            "type": "Airfare",
+            "amount": 1200.0,
+            "others": [
+              {
+                "timestamp":"2022-12-31 12:00:00", 
+                "comments":"Economy class"
+              }, 
+              {
+                "timestamp":"2022-12-31 12:30:35", 
+                "comments":"Absolutely horrendous in-flight meal..."
+              }
+            ]
+          },
+          {
+            "type": "Hotel",
+            "amount": 800.0,
+            "others": [
+              {
+                "timestamp":"2022-12-31 18:12:15", 
+                "comments":"3 nights"
+              }
+            ]
+          },
+          {
+            "type": "Food",
+            "amount": 400.0,
+            "others": [
+              {
+                "timestamp":"2022-12-31 20:00:02", 
+                "comments":"Proper meal since touching down..."
+              }
+            ]
+          }
+        ],
+        "others": [
+          {"add-field-1":"Visited the Louvre"}, 
+          {"add-field-2":"Saw the Eiffel Tower"}
+        ]
+      },
+      {
+        "tid": 456, 
+        "name": "Business Trip to Tokyo",
+        "expenses": [
+          {
+            "type": "Airfare",
+            "amount": 2500.0,
+            "others": [
+              {
+                "timestamp":"2023-01-03 15:15:15", 
+                "comments":"Business class"
+              }
+            ]
+          },
+          {
+            "type": "Hotel",
+            "amount": 1200.0,
+            "others": [
+              {
+                "timestamp":"2023-01-03 21:22:23", 
+                "comments":"5 nights"
+              }
+            ]
+          },
+          {
+            "type": "Food",
+            "amount": 800.0,
+            "others": [
+              {
+                "timestamp":"2023-01-03 22:15:00", 
+                "comments":"Expensed meal from vending machines"
+              }
+            ]
+          }
+        ],
+        "others": [
+          {"add-field-1":"Met with clients"}, 
+          {"add-field-2":"Visited Tokyo Tower"}
+        ]
+      }
+    ]
+  }
+}
