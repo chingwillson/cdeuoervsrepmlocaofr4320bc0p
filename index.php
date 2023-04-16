@@ -11,13 +11,14 @@
   define('IS_STRING',       'is_string');
   define('IS_DOUBLE',       'is_double');
   define('IS_INT',          'is_int');
+  define('IS_NUMERIC',      'is_numeric');
 
   define('DB_HOST',         'localhost');
   define('DB_NAME',         'test');
   define('DB_USER',         '');
   define('DB_PASS',         '');
 
-  $jsonpayload_keys = array('uid'=>IS_STRING, 'trips'=>IS_ARRAY);
+  $jsonpayload_keys = array('uid'=>IS_NUMERIC, 'trips'=>IS_ARRAY);
   $trip_keys        = array('tid'=>IS_INT, 'name'=>IS_STRING, 'expenses'=>IS_ARRAY, 'others'=>IS_ARRAY);
   $expense_keys     = array('type'=>IS_STRING, 'amount'=>'is_double', 'others'=>IS_ARRAY);
   
@@ -45,7 +46,8 @@
   }
   
   $trips = $payload['trips'];
-  $stored_trips = array();
+  $stored_trips     = array();
+  $stored_trip_ids  = array();
   foreach($trips as $trip) {
     if (!has_valid_schema($trip_keys, $trip) || !has_valid_value($trip_keys, $trip)) {
       dump(array('code'=>CODE_FAILED, 'message'=>'Invalid JSON trips payload.', 'userid'=>$uid, 'debug'=>$trip));
@@ -86,7 +88,8 @@
       dump(array('code'=>CODE_FAILED, 'message'=>'Failed to insert trip.', 'userid'=>$uid, 'debug'=>$trip));
     }
     $trip_id = $pdo->lastInsertId();
-    $stored_trips[] = $trip_name;
+    $stored_trips[]     = $trip_name;
+    $stored_trip_ids[]  = $trip_id;
   
     $expense_query = "INSERT INTO expenses (`type`, `amount`, `trip_id`, `others`) VALUES (:type, :amount, :trip_id, :others)";
     $expense_statement = $pdo->prepare($expense_query);  
@@ -103,7 +106,7 @@
     }
   }
   
-  dump(array('code'=>CODE_SUCCESS, 'message'=>'OK', 'userid'=>$uid, 'names'=>$stored_trips, 'number'=>count($stored_trips)));
+  dump(array('code'=>CODE_SUCCESS, 'message'=>'OK', 'userid'=>$uid, 'names'=>$stored_trips, 'ids'=>$stored_trip_ids, 'number'=>count($stored_trips)));
 
   function has_valid_schema($keys_array, $array) {
     if (empty($keys_array) || empty($array) || !is_array($keys_array) || !is_array($array)) {
