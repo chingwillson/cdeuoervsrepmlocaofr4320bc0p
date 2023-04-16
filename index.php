@@ -89,7 +89,7 @@
     }
     $trip_id = $pdo->lastInsertId();
     $stored_trips[]     = $trip_name;
-    $stored_trip_ids[]  = $trip_id;
+    $stored_trip_ids[]  = $trip['tid'];
   
     $expense_query = "INSERT INTO expenses (`type`, `amount`, `trip_id`, `others`) VALUES (:type, :amount, :trip_id, :others)";
     $expense_statement = $pdo->prepare($expense_query);  
