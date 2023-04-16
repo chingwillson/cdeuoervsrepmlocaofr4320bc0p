@@ -28,5 +28,5 @@ CREATE TABLE `expenses` (
   `others` VARCHAR(5000) NOT NULL DEFAULT ''
 );
 
-INSERT INTO `users`(`uid`,`name`) VALUES ('ab789c', 'Souperman!');
+INSERT INTO `users`(`uid`,`name`) VALUES ('0011223456', 'Souperman!');
 SELECT * FROM `users`; SELECT * FROM `trips`; SELECT * FROM `expenses`;

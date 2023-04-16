@@ -45,7 +45,8 @@
     dump(array('code'=>CODE_FAILED, 'message'=>'Invalid JSON payload.', 'debug'=>$payload));
   }
   
-  $trips = $payload['trips'];
+  $uid    = $payload['uid'];
+  $trips  = $payload['trips'];
   $stored_trips     = array();
   $stored_trip_ids  = array();
   foreach($trips as $trip) {
@@ -60,7 +61,6 @@
       }
     }
   
-    $uid          = $payload['uid'];
     $trip_id      = $trip['tid'];
     $trip_name    = $trip['name'];
     $trip_others  = json_encode($trip['others']);
