@@ -20,7 +20,7 @@
 
   $jsonpayload_keys = array('uid'=>IS_NUMERIC, 'trips'=>IS_ARRAY);
   $trip_keys        = array('tid'=>IS_INT, 'name'=>IS_STRING, 'expenses'=>IS_ARRAY, 'others'=>IS_ARRAY);
-  $expense_keys     = array('type'=>IS_STRING, 'amount'=>'is_double', 'others'=>IS_ARRAY);
+  $expense_keys     = array('type'=>IS_STRING, 'amount'=>IS_NUMERIC, 'others'=>IS_ARRAY);
   
   try {
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8", DB_USER, DB_PASS);
